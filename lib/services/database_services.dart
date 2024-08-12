@@ -18,4 +18,20 @@ class DatabaseServices {
       'createAt' : FieldValue.serverTimestamp()
     });
   }
+
+  //Update Todo task
+  Future<void> updateTodo(String id, String title, String description) async{
+    final updatetodoCollection = FirebaseFirestore.instance.collection('todos').doc(id);
+    return await updatetodoCollection.update({
+      'title': title,
+      'description': description
+    });
+  }
+
+  //update Todo status
+  Future<void> updateTodoStatus(String id, bool isDone) async{
+    return await todoCollection.doc(id).update({
+      'isDone': isDone
+    });
+  }
 }
