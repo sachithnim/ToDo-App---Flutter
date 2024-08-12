@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:todo_app/model/todo_model.dart';
 
 class DatabaseServices {
   final CollectionReference todoCollection = FirebaseFirestore.instance.collection('todos');
@@ -40,4 +41,26 @@ class DatabaseServices {
     return await todoCollection.doc(id).delete();
   }
 
+
+  //get pending tasks
+  Stream<List<Todo>> get todos{
+    return todoCollection.where('uid', isEqualTo: user!.uid).where('isDone', isEqualTo: false).snapshots().map(_todoListFromSnapshot);
+  }
+  
+  //get completed tasks
+  Stream<List<Todo>> get completedtodos{
+    return todoCollection.where('uid', isEqualTo: user!.uid).where('isDone', isEqualTo: true).snapshots().map(_todoListFromSnapshot);
+  }
+
+  List<Todo> _todoListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.docs.map((doc){
+      return Todo(
+        id: doc.id,
+        title: doc['title'] ?? '',
+        description: doc['description'] ?? '',
+        isDone: doc['isDone'] ?? false,
+        timeStamp: doc['createAt'] ?? ''
+      );
+    }).toList();
+  }                                                   
 }
