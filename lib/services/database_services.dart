@@ -34,4 +34,10 @@ class DatabaseServices {
       'isDone': isDone
     });
   }
+
+  //detele Todo task
+  Future<void> deleteTodoTask(String id) async{
+    return await todoCollection.doc(id).delete();
+  }
+
 }
