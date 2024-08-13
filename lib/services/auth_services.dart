@@ -4,7 +4,7 @@ class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // Sign In
-  Future<User?> _signInWithEmailAndPassword(String email, String password) async {
+  Future<User?> signInWithEmailAndPassword(String email, String password) async {
     try{
       UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
@@ -16,7 +16,7 @@ class AuthServices {
     }
   }
   // Sign Up
-  Future<User?> _registerWithEmailAndPassword(String email, String password) async {
+  Future<User?> registerWithEmailAndPassword(String email, String password) async {
     try{
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user = result.user;

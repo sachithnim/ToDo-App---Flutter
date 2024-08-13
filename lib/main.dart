@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:todo_app/login_screen.dart';
+import 'package:todo_app/signup_screen.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: "ToDo",
       theme: 
       ThemeData(primarySwatch: Colors.indigo, primaryColor: Colors.indigo),
-      home: LoginScreen(),
+      home: SignupScreen(),
     );
   }
 }
