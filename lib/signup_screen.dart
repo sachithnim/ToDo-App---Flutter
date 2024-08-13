@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/home_screen.dart';
+import 'package:todo_app/login_screen.dart';
 import 'package:todo_app/services/auth_services.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -72,15 +74,34 @@ class SignupScreen extends StatelessWidget {
                   )),
                   ),
               SizedBox(height: 50),
-              ElevatedButton(onPressed: () async{
-                User? user = await _auth.registerWithEmailAndPassword(
-                  _emailController.text,
-                  _passController.text,
-                );
-                if(user != null){
-                  Navigator.push(context, materialPageRoute(builder: (context) => HomeScreen()));
-                }
-              }, child: child)
+              SizedBox(
+                height: 50,
+                width: MediaQuery.of(context).size.width / 1.5,
+                child: ElevatedButton(onPressed: () async{
+                  User? user = await _auth.registerWithEmailAndPassword(
+                    _emailController.text,
+                    _passController.text,
+                  );
+                  if(user != null){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                    HomeScreen(),));
+                  }
+                }, child: Text('Register', style: TextStyle(
+                  color: Colors.indigo,
+                  fontSize: 18,
+                ),)),
+              ),
+              SizedBox(height: 20),
+              Text("OR",
+              style: TextStyle(color: Colors.white),
+              ),
+              SizedBox(height: 20),
+              TextButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => 
+                LoginScreen(),));
+              }, child: Text("Log In",
+              style: TextStyle(fontSize: 18),
+              ))
             ],
             ),
         ),
