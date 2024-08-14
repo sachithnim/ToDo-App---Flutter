@@ -86,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => 
                     HomeScreen(),));
                   }
-                }, child: Text('Register', style: TextStyle(
+                }, child: Text('Log In', style: TextStyle(
                   color: Colors.indigo,
                   fontSize: 18,
                 ),
