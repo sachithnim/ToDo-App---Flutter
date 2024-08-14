@@ -4,6 +4,8 @@ import 'package:todo_app/login_screen.dart';
 import 'package:todo_app/model/todo_model.dart';
 import 'package:todo_app/services/auth_services.dart';
 import 'package:todo_app/services/database_services.dart';
+import 'package:todo_app/widgets/completed_widget.dart';
+import 'package:todo_app/widgets/pending_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,9 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final _wedgets = [
     // pending task Widget
-    Container(),
+    PendingWidget(),
     //completed task widget 
-    Container(),
+    CompletedWidget(),
   ];
 
   @override
